@@ -1,10 +1,14 @@
+#!/usr/bin/env perl
+
 use warnings;
 use strict;
 use utf8;
 
 binmode(STDOUT, ':utf8');
 
-open(my $in, '<:encoding(UTF-8)','translation.txt') or die $!;
+my $filename = @ARGV ? $ARGV[0] : die "Usage: $0 <filename>\n";
+
+open(my $in, '<:encoding(UTF-8)', $filename) or die $!;
 read $in, my $text, -s $in;
 
 my @chars = split //, $text;
